@@ -205,6 +205,9 @@ group :development, :test do
   # Logs the source of execution of all queries to the Rails log
   # gem "active_record_query_trace"
 
+  # Mocking library for testing stripe ruby
+  gem "stripe-ruby-mock", "~> 2.4.0", require: "stripe_mock"
+
   # Generate fake data for tests
   gem "faker"
 
@@ -229,6 +232,10 @@ gem "net-http2"
 
 # Profiler for your development and production Ruby rack apps.
 gem "rack-mini-profiler"
+
+group :staging, :production do
+  # timeout Rails request, needed if running on heroku- https://devcenter.heroku.com/articles/request-timeout
+  gem "rack-timeout", "0.4.2"
 
   # for logging to work in heroku
   gem "rails_12factor"
